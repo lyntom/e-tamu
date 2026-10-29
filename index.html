@@ -46,6 +46,25 @@
     <link rel="shortcut icon" href="./favicon.ico" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 
+    <!-- GitHub Pages SPA routing & hash-to-clean URL converter -->
+    <script>
+      (function (l) {
+        if (l.hash && l.hash.startsWith('#/')) {
+          var cleanPath = l.hash.substring(1);
+          window.history.replaceState(null, null, l.pathname.replace(/\/$/, '') + cleanPath);
+        } else if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
+
     <!-- Polyfill aman untuk kompatibilitas ekstensi peramban & isolasi Storage -->
     <script>
       (function () {
@@ -94,8 +113,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Public+Sans:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="./assets/index-SCVV6ePj.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-D27Hs0bU.css">
+    <script type="module" crossorigin src="/e-tamu/assets/index-gDJREjag.js"></script>
+    <link rel="stylesheet" crossorigin href="/e-tamu/assets/index-D27Hs0bU.css">
   </head>
   <body class="bg-background text-on-surface antialiased">
     <div id="root"></div>
