@@ -19,7 +19,7 @@ Kode sumber lengkap beserta konfigurasi pengembang, skema data, dan dokumentasi 
 ```text
 .
 ├── _redirects       # Aturan routing SPA untuk Cloudflare Pages (/* /index.html 200)
-├── index.html       # HTML entry point beroptimasi tinggi
+├── index.html       # HTML entry point beroptimasi tinggi dengan patch isolasi storage
 ├── assets/          # Bundel JavaScript dan CSS yang telah diminifikasi
 │   ├── index-*.js
 │   └── index-*.css
@@ -41,6 +41,7 @@ Kode sumber lengkap beserta konfigurasi pengembang, skema data, dan dokumentasi 
 ### 2. GitHub Pages
 1. Aktifkan GitHub Pages pada pengaturan repositori (Settings -> Pages).
 2. Pilih sumber *Deploy from a branch* -> branch `master` / root `/`.
+3. Aplikasi menggunakan `HashRouter`, sehingga tautan dan navigasi rute `/` (`#/`), `/login` (`#/login`), dan `/admin` (`#/admin`) berjalan stabil tanpa kendala 404 saat *refresh*.
 
 ### 3. Server Web Mandiri (Nginx / Apache)
 Pastikan server dikonfigurasi untuk mengarahkan seluruh rute yang tidak cocok dengan berkas fisik kembali ke `index.html`.
@@ -58,9 +59,9 @@ location / {
 
 | Rute | Peruntukan | Deskripsi |
 | :--- | :--- | :--- |
-| `/` | **Masyarakat Umum / Tamu** | Tampilan Kiosk ramah *touchscreen*, pilihan 4 bidang Disperkim Samarinda, jam WITA *real-time*, tiket antrean otomatis, dan modal QR Code. |
-| `/login` | **Petugas Meja Piket / ASN** | Gerbang masuk terotentikasi dilengkapi tombol *Auto-fill* pengujian. |
-| `/admin` | **Administrator Dinas** | Dashboard rekapitulasi data tamu, grafik bento statistik, filter pencarian, ekspor CSV aman, dan cetak kop surat resmi dinas. |
+| `#/` | **Masyarakat Umum / Tamu** | Tampilan Kiosk ramah *touchscreen*, pilihan 4 bidang Disperkim Samarinda, jam WITA *real-time*, tiket antrean otomatis, dan modal QR Code. |
+| `#/login` | **Petugas Meja Piket / ASN** | Gerbang masuk terotentikasi dilengkapi tombol *Auto-fill* pengujian. |
+| `#/admin` | **Administrator Dinas** | Dashboard rekapitulasi data tamu, grafik bento statistik, filter pencarian, ekspor CSV aman, dan cetak kop surat resmi dinas. |
 
 ---
 
